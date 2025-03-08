@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вопрос на миллион</title>
     <style>
         body {
@@ -10,27 +11,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #808080 /* Черный фон */
+            background: #000; /* Черный фон */
             font-family: 'Arial', sans-serif;
-            overflow: hidden; /* Скрываем всё, что выходит за пределы экрана */
+            overflow: hidden;
         }
         .container {
             text-align: center;
-            z-index: 2; /* Чтобы текст был поверх звезд */
+            z-index: 2;
         }
         h1 {
             color: #d32f2f;
-            font-size: 3em;
-            margin-bottom: 40px;
+            font-size: 2.5em; /* Уменьшен размер для мобильных устройств */
+            margin-bottom: 20px;
         }
         .buttons {
             display: flex;
-            gap: 30px;
+            gap: 20px; /* Уменьшен отступ для мобильных устройств */
             justify-content: center;
+            flex-wrap: wrap; /* Кнопки переносятся на новую строку на маленьких экранах */
         }
         button {
-            padding: 15px 40px;
-            font-size: 1.5em;
+            padding: 10px 30px; /* Уменьшен размер кнопок для мобильных устройств */
+            font-size: 1.2em;
             border: none;
             border-radius: 25px;
             cursor: pointer;
@@ -67,6 +69,17 @@
                 opacity: 0;
             }
         }
+
+        /* Медиа-запросы для мобильных устройств */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            button {
+                padding: 8px 20px;
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -80,7 +93,6 @@
     </div>
 
     <script>
-        // Код для кнопок
         document.getElementById('yesBtn').onclick = () => {
             window.location.href = 'valentine.html';
         };
@@ -89,21 +101,20 @@
             window.location.href = '404.html';
         };
 
-        // Код для звезд
         function createStar() {
             const star = document.createElement('div');
             star.className = 'star';
             star.style.left = Math.random() * window.innerWidth + 'px';
-            star.style.top = Math.random() * -100 + 'px'; // Начинаем выше экрана
-            star.style.animationDuration = Math.random() * 2 + 1 + 's'; // Случайная скорость
+            star.style.top = Math.random() * -100 + 'px';
+            star.style.animationDuration = Math.random() * 2 + 1 + 's';
             document.querySelector('.stars').appendChild(star);
 
             setTimeout(() => {
                 star.remove();
-            }, 30000); // Удаляем звезду через 3 секунды
+            }, 3000);
         }
 
-        setInterval(createStar, 100); // Создаём новую звезду каждые 100 мс
+        setInterval(createStar, 100);
     </script>
 </body>
 </html>
